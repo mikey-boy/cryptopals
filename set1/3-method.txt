@@ -1,0 +1,15 @@
+# This challenge was to be done by hand
+
+Found the two most common hex characters (37 and 78). Xor'd the both of them,
+the result would the xor of two common english characters. o and ' ' matched.
+The key could then either be 17 or 58. It was 58.
+
+1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736
+XOR
+58585858585858585858585858585858585858585858585858585858585858585858
+=
+436f6f6b696e67204d432773206c696b65206120706f756e64206f66206261636f6e
+
+
+C o o k i n g   M C ' s   l i k e   a   p o u n d   o f   b a c o n
+436f6f6b696e67204d432773206c696b65206120706f756e64206f66206261636f6e
