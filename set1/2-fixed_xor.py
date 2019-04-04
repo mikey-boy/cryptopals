@@ -1,7 +1,4 @@
-# Converts a hex string (provided as only arg) and converts it to base64
-
-# Remember! Always operate on raw bytes, never on encoded strings.
-# Only use hex and base64 for pretty-printing.
+# Computes the xor of two provided hex strings
 
 import sys
 import binascii
