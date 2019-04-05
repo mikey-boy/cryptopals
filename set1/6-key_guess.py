@@ -4,6 +4,7 @@ import sys
 import base64
 
 if len(sys.argv) != 2:
+	print len(sys.argv)
 	print "Please provide base64'd encrypted text"
 	exit(1)
 
@@ -28,10 +29,9 @@ bin=b64_to_bin(sys.argv[1])
 out=""
 lst = []
 
-for keysize in range (2, min(40, len(bin)/8)):
+for keysize in range (2, 40):
 	lst+=[[keysize, hamming_distance(bin[0:keysize*8], bin[keysize*8:keysize*16]) / keysize]]
 
 print lst
 
-#print hex(int(out, 2)).rstrip("L")
 
