@@ -35,8 +35,8 @@ for i in range(256):
 	c = '{0:08b}'.format(i)
 	out = repeat_xor(bin_val,c)
 
-#	if unprintable(out):
-#		continue
+	if unprintable(out):
+		continue
 
 	ascii=""
 	for j in range(0, len(out), 8):
@@ -59,5 +59,6 @@ for i in range(0, len(ascii_txts)):
 		if j in m:
 			sum += m[j]
 
-	if sum >= int(len(ascii_txts[i])*0.2):
-		print "key:" + str(keys[i]) + " txt:" + ascii_txts[i]
+	if sum >= int(len(ascii_txts[i])*0.35):
+		#print "key:" + str(keys[i]) + " txt:" + ascii_txts[i]
+		print ascii_txts[i]
