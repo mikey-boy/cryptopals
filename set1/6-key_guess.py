@@ -4,8 +4,7 @@ import sys
 import base64
 
 if len(sys.argv) != 2:
-	print len(sys.argv)
-	print "Please provide base64'd encrypted text"
+	print "Usage: python %s [base64_txt]" %sys.argv[0]
 	exit(1)
 
 def xor(a,b):
@@ -29,8 +28,10 @@ bin=b64_to_bin(sys.argv[1])
 out=""
 lst = []
 
-for keysize in range (2, 40):
-	lst+=[[keysize, hamming_distance(bin[0:keysize*8], bin[keysize*8:keysize*16]) / keysize]]
+for keysize in range (2, 20):
+	hd1 = hamming_distance(bin[0:keysize*8], bin[keysize*8:keysize*16]) / keysize
+	hd2 = hamming_distance(bin[keysize*16:keysize*24], bin[keysize*24:keysize*32]) / keysize
+	lst+=[[keysize, hd1+hd2]]
 
 print lst
 
