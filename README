@@ -1,0 +1,15 @@
+#----------------------------------- Overview -----------------------------------#
+
+Cryptopals is set of crypto-based challenges that can be found conveniently at 
+https://cryptopals.com. This solutions here will be done in both python and C++. 
+
+#--------------------------------- Set Contents ---------------------------------#
+
+Set 1: Basics
+Set 2: Block crypto
+Set 3: Block & stream crypto
+Set 4: Stream crypto & randomness
+Set 5: Diffie-Hellman & friends
+Set 6: RSA and DSA
+Set 7: Hashes
+Set 8: Abstract algebra
