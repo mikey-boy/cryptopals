@@ -19,28 +19,41 @@ def xor_blocks(b1, b2):
 	return b3
 
 # Decrypt AES ciphertext in CBC mode 
-def cbc_decrypt(ciphertext, iv):
-	plaintext = ""
+def cbc_decrypt(ciphertext, iv, key):
+	plaintext = bytearray()
+		
+	for i in range(0, len(ciphertext), 16):
+		block = ciphertext[i:i+16]
+		dec_block = bytearray()
+		dec_block.extend(decrypt_block(block, key))
+		plaintext.extend(xor_blocks(dec_block, iv))
+		iv = ciphertext[i:i+16]
+	return plaintext
 	
 	
 # Encrypt AES ciphertext in CBC mode 
 def cbc_encrypt(plaintext, iv, key):
-	ciphertext = b''
+	ciphertext = bytearray()
 	bin_pt = bytearray()
 	bin_pt.extend(plaintext)
 
 	for i in range(0, len(bin_pt), 16):
 		block = bin_pt[i:i+16]
 		block = xor_blocks(block, iv)
-		ciphertext += encrypt_block(block, key) 
-	
+		ciphertext.extend(encrypt_block(block, key))
+		iv = ciphertext[i:i+16]
+	return ciphertext 
+		
 
 def main():
 	key = b'YELLOW SUBMARINE'
-	#with open('7-file.txt') as fh:
-	#	ciphertext = base64.b64decode(fh.read())
+	txt = 'Hmm aint that interesting no pad'	
 	
-	cbc_encypt('hello how ar you', bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), key)
+	print "Plaintext: %s" % txt
+	enc = cbc_encrypt(txt, bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), key)
+	print "Encrypted: %s" % enc
+	dec = cbc_decrypt(enc, bytearray([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), key)
+	print "Decrypted: %s" % dec 
 
 if __name__ == '__main__':
 	main()
